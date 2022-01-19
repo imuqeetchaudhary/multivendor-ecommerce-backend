@@ -6,7 +6,7 @@
 
 ## to create a new product
 
-- product/create :post
+- product/ :post
 
 ```js
 {
@@ -17,7 +17,7 @@
 
 ## to get all product
 
-- product/all :get
+- product/ :get
 
 ## to get a single product
 
