@@ -17,6 +17,7 @@ exports.createProduct = async ({ title, price }) => {
 exports.getAllProducts = async () => {
   try {
     const products = await Product.find();
+    if (!products) throw new Error("Products not found");
     return products;
   } catch (err) {
     throw new Error(err);
@@ -26,6 +27,7 @@ exports.getAllProducts = async () => {
 exports.getSingleProduct = async ({ id }) => {
   try {
     const products = await Product.findById(id);
+    if (!products) return "Product not found";
     return products;
   } catch (err) {
     throw new Error(err);
