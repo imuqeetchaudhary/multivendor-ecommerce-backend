@@ -24,9 +24,18 @@ exports.getSingleProduct = promise(async (req, res) => {
   res.status(200).json({ product });
 });
 
-exports.deleteSingleProduct = promise(async (req, res) => {
+exports.updateProduct = promise(async (req, res) => {
   const { id } = req.params;
-  const message = await productService.deleteSingleProduct({ id });
+  const { title, price } = req.body;
+
+  const message = await productService.updateProduct({ id, title, price });
+
+  res.status(200).json({ message });
+});
+
+exports.deleteProduct = promise(async (req, res) => {
+  const { id } = req.params;
+  const message = await productService.deleteProduct({ id });
   console.log(message);
 
   res.status(200).json({ message });

@@ -23,6 +23,17 @@
 
 - product/:id: :get
 
+## to update a product
+
+- product/:id: :patch
+
+```js
+{
+    title: String,
+    price: Number
+}
+```
+
 ## to delete a single product
 
 - product/:id: :delete

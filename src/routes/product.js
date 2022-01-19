@@ -8,6 +8,8 @@ router.get("/all", productController.getAllProducts);
 
 router.get("/:id", productController.getSingleProduct);
 
-router.delete("/:id", productController.deleteSingleProduct);
+router.patch("/:id", productController.updateProduct);
+
+router.delete("/:id", productController.deleteProduct);
 
 module.exports = router;

@@ -34,9 +34,26 @@ exports.getSingleProduct = async ({ id }) => {
   }
 };
 
-exports.deleteSingleProduct = async ({ id }) => {
+exports.updateProduct = async ({ id, title, price }) => {
   try {
-    const products = await Product.deleteOne({ _id: id });
+    const updateProduct = await Product.findByIdAndUpdate(id, {
+      $set: {
+        title,
+        price,
+      },
+    });
+
+    return updateProduct == null
+      ? "Product not found"
+      : "Successfully updated product";
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+exports.deleteProduct = async ({ id }) => {
+  try {
+    const products = await Product.findByIdAndRemove({ id });
     return products.deletedCount == 1
       ? "Successfully deleted Product"
       : "Product doesn't exixts";
