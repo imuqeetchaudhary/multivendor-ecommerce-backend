@@ -3,6 +3,7 @@ const { promise } = require("../middlewares/promise");
 
 exports.createProduct = promise(async (req, res) => {
   const { title, price } = req.body;
+  console.log(req.file);
 
   const product = await productService.createProduct({ title, price });
 
