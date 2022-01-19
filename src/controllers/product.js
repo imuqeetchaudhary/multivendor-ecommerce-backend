@@ -30,7 +30,13 @@ exports.updateProduct = promise(async (req, res) => {
 
   const message = await productService.updateProduct({ id, title, price });
 
-  res.status(200).json({ message });
+  res.status(200).json({
+    message,
+    request: {
+      type: "GET",
+      url: `http://localhost:8000/product/${id}`,
+    },
+  });
 });
 
 exports.deleteProduct = promise(async (req, res) => {
