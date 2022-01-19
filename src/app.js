@@ -10,6 +10,8 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(__dirname + "/../uploads"));
+
 app.use("/", allRoutes);
 
 if (app.get("env") === "development") {
