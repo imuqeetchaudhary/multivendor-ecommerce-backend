@@ -10,7 +10,7 @@ exports.createProduct = async ({ title, price }) => {
     await product.save();
     return product;
   } catch (err) {
-    return err;
+    throw new Error(err);
   }
 };
 
@@ -19,7 +19,7 @@ exports.getAllProducts = async () => {
     const products = await Product.find();
     return products;
   } catch (err) {
-    return err;
+    throw new Error(err);
   }
 };
 
@@ -28,7 +28,7 @@ exports.getSingleProduct = async ({ id }) => {
     const products = await Product.findById(id);
     return products;
   } catch (err) {
-    return err;
+    throw new Error(err);
   }
 };
 
@@ -39,6 +39,6 @@ exports.deleteSingleProduct = async ({ id }) => {
       ? "Successfully deleted Product"
       : "Product doesn't exixts";
   } catch (err) {
-    return err;
+    throw new Error(err);
   }
 };
