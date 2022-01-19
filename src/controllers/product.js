@@ -3,13 +3,22 @@ const { promise } = require("../middlewares/promise");
 
 exports.createProduct = promise(async (req, res) => {
   const { title, price } = req.body;
-  console.log(req.file);
+  const image = req.file.filename;
 
-  const product = await productService.createProduct({ title, price });
+  const product = await productService.createProduct({ title, price, image });
+
+  const imageRequest = {
+    type: "GET",
+    url: `http://localhost:8000/${product.image}`,
+  };
 
   res
     .status(200)
-    .json({ message: "Successfully created a new product", product });
+    .json({
+      message: "Successfully created a new product",
+      product,
+      imageRequest,
+    });
 });
 
 exports.getAllProducts = promise(async (req, res) => {

@@ -11,7 +11,8 @@
 ```js
 {
     title: String,
-    price: Number
+    price: Number,
+    image: String
 }
 ```
 

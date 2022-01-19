@@ -1,10 +1,11 @@
 const { Product } = require("../db/models/product");
 
-exports.createProduct = async ({ title, price }) => {
+exports.createProduct = async ({ title, price, image }) => {
   try {
     const product = new Product({
       title,
       price,
+      image,
     });
 
     await product.save();
