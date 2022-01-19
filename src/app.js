@@ -19,4 +19,10 @@ if (app.get("env") === "development") {
 
 app.get("/", (req, res) => res.json({ message: "Online Shop RESTful API" }));
 
+app.use((req, res) => {
+  const error = new Error("Route not found");
+  error.status = 404;
+  res.status(error.status || 500).json({ error: error.message });
+});
+
 module.exports = { app };
