@@ -1,6 +1,6 @@
 const { Product } = require("../db/models/product");
 
-exports.createProduct = async ({ title, price, image }) => {
+exports.createProduct = async ({ title, price, image, description }) => {
   try {
     const product = new Product({
       title,
@@ -36,7 +36,7 @@ exports.getSingleProduct = async ({ id }) => {
   }
 };
 
-exports.updateProduct = async ({ id, title, price }) => {
+exports.updateProduct = async ({ id, title, price, description }) => {
   try {
     const updateProduct = await Product.findByIdAndUpdate(id, {
       $set: {
