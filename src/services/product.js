@@ -54,7 +54,7 @@ exports.updateProduct = async ({ id, title, price }) => {
 
 exports.deleteProduct = async ({ id }) => {
   try {
-    const products = await Product.findByIdAndRemove({ id });
+    const products = await Product.deleteOne({ _id: id });
     return products.deletedCount == 1
       ? "Successfully deleted Product"
       : "Product doesn't exixts";

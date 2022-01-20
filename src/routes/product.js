@@ -1,16 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const { upload } = require("../middlewares/upload");
+const { authentication } = require("../middlewares/isAuth");
 const productController = require("../controllers/product");
 
-router.post("/", upload.single("image"), productController.createProduct);
+router.post(
+  "/",
+  authentication,
+  upload.single("image"),
+  productController.createProduct
+);
 
 router.get("/", productController.getAllProducts);
 
 router.get("/:id", productController.getSingleProduct);
 
-router.patch("/:id", productController.updateProduct);
+router.patch("/:id", authentication, productController.updateProduct);
 
-router.delete("/:id", productController.deleteProduct);
+router.delete("/:id", authentication, productController.deleteProduct);
 
 module.exports = router;
