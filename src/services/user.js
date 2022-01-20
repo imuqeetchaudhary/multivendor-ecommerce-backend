@@ -23,3 +23,12 @@ exports.createUser = async ({ name, email, password }) => {
     throw new Error(err);
   }
 };
+
+exports.excludePassword = ({ user }) => {
+  try {
+    const { password: pass, __v, ...rest } = user._doc;
+    return rest;
+  } catch (err) {
+    throw new Error(err);
+  }
+};

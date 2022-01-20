@@ -14,7 +14,11 @@ exports.register = promise(async (req, res) => {
 
   const user = await userService.createUser({ name, email, password: hash });
 
-  res.status(200).json({ message: "Successfully created user", user });
+  const newUserObj = userService.excludePassword({ user });
+
+  res
+    .status(200)
+    .json({ message: "Successfully created user", user: newUserObj });
 });
 
 exports.login = promise(async (req, res) => {
@@ -28,16 +32,14 @@ exports.login = promise(async (req, res) => {
   if (!matchPassword)
     return res.status(400).json({ message: "Credentials not matched" });
 
+  const newUserObj = userService.excludePassword({ user });
+
   const token = jwt.sign(
     {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
+      newUserObj,
     },
     process.env.ACCESS_TOKEN_SECRET
   );
 
-  res
-    .status(200)
-    .json({ token, _id: user._id, name: user.name, email: user.email });
+  res.status(200).json({ token, user: newUserObj });
 });
