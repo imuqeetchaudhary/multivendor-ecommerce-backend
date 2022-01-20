@@ -1,10 +1,14 @@
-### Online Store REST Api
+# Online Store REST Api
 
 ---
 
-### Routes for User Auth
+### Base URL: http://localhost:8000
 
-## to register a new user
+---
+
+## Routes for User Auth
+
+### to register a new user
 
 - user/register :post
 
@@ -16,7 +20,7 @@
 }
 ```
 
-## to login a new user
+### to login a new user
 
 - user/login :post
 
@@ -27,9 +31,9 @@
 }
 ```
 
-### Routes for Products
+## Routes for Products
 
-## to create a new product
+### to create a new product
 
 - product/ :post :protected
 
@@ -37,29 +41,29 @@
 {
     title: String,
     price: Number,
-    image: String
+    image: String,
 }
 ```
 
-## to get all product
+### to get all product
 
 - product/ :get
 
-## to get a single product
+### to get a single product
 
 - product/:id: :get
 
-## to update a product
+### to update a product
 
 - product/:id: :patch :protected
 
 ```js
 {
     title: String,
-    price: Number
+    price: Number,
 }
 ```
 
-## to delete a single product
+### to delete a single product
 
 - product/:id: :delete :protected
