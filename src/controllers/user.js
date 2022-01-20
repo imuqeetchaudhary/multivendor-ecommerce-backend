@@ -34,12 +34,7 @@ exports.login = promise(async (req, res) => {
 
   const newUserObj = userService.excludePassword({ user });
 
-  const token = jwt.sign(
-    {
-      newUserObj,
-    },
-    process.env.ACCESS_TOKEN_SECRET
-  );
+  const token = jwt.sign({ newUserObj }, process.env.ACCESS_TOKEN_SECRET);
 
   res.status(200).json({ token, user: newUserObj });
 });
