@@ -16,6 +16,17 @@
 }
 ```
 
+## to login a new user
+
+- user/login :post
+
+```js
+{
+    email: String,
+    password: String,
+}
+```
+
 ### Routes for Products
 
 ## to create a new product

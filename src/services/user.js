@@ -3,7 +3,6 @@ const { User } = require("../db/models/user");
 exports.findUser = async ({ email }) => {
   try {
     const user = await User.findOne({ email });
-    console.log(user);
     return user;
   } catch (err) {
     throw new Error(err);
