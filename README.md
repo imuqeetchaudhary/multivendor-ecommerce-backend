@@ -31,7 +31,7 @@
 
 ## to create a new product
 
-- product/ :post
+- product/ :post :protected
 
 ```js
 {
@@ -51,7 +51,7 @@
 
 ## to update a product
 
-- product/:id: :patch
+- product/:id: :patch :protected
 
 ```js
 {
@@ -62,4 +62,4 @@
 
 ## to delete a single product
 
-- product/:id: :delete
+- product/:id: :delete :protected
