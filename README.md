@@ -50,13 +50,13 @@
 
 - product/ :get
 
-### to get a single product
+### to get a single product (where id === productId)
 
 - product/:id: :get
 
 ### to update a product
 
-- product/:id: :patch :protected
+- product/:id: :patch :protected (where id === productId)
 
 ```js
 {
@@ -68,4 +68,29 @@
 
 ### to delete a single product
 
-- product/:id: :delete :protected
+- product/:id: :delete :protected (where id === productId)
+
+## Routes for Adding Products to Cart
+
+### to add a new product to cart
+
+- cart/:id: :post :protected (where id === productId)
+
+### to get all cart products
+
+- cart/ :get :protected
+
+### to update a cart product
+
+- cart/:id: :patch :protected (where id === cartId)
+
+```js
+{
+    productId: Number,
+    quantity: Number,
+}
+```
+
+### to delete a single cart product
+
+- cart/:id: :delete :protected (where id === cartId)

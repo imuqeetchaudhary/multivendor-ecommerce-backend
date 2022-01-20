@@ -60,7 +60,6 @@ exports.updateProduct = promise(async (req, res) => {
 exports.deleteProduct = promise(async (req, res) => {
   const { id } = req.params;
   const message = await productService.deleteProduct({ id });
-  console.log(message);
 
   res.status(200).json({ message });
 });
