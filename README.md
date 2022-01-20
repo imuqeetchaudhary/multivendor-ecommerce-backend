@@ -42,6 +42,7 @@
     title: String,
     price: Number,
     image: String,
+    description: String,
 }
 ```
 
@@ -61,6 +62,7 @@
 {
     title: String,
     price: Number,
+    description: String,
 }
 ```
 

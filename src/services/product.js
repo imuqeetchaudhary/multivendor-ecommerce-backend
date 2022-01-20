@@ -6,6 +6,7 @@ exports.createProduct = async ({ title, price, image }) => {
       title,
       price,
       image,
+      description,
     });
 
     await product.save();
@@ -41,6 +42,7 @@ exports.updateProduct = async ({ id, title, price }) => {
       $set: {
         title,
         price,
+        description,
       },
     });
 
