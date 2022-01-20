@@ -2,6 +2,20 @@
 
 ---
 
+### Routes for User Auth
+
+## to register a new user
+
+- user/register :post
+
+```js
+{
+    name: String,
+    email: String,
+    password: String,
+}
+```
+
 ### Routes for Products
 
 ## to create a new product
