@@ -12,14 +12,16 @@ exports.createProduct = promise(async (req, res) => {
     description,
   });
 
+  const newProductObj = productService.excludeCreatedAtUpdatedAt({ product });
+
   const imageRequest = {
     type: "GET",
-    url: `http://localhost:8000/${product.image}`,
+    url: `http://localhost:8000/${newProductObj.image}`,
   };
 
   res.status(200).json({
     message: "Successfully created a new product",
-    product,
+    newProductObj,
     imageRequest,
   });
 });

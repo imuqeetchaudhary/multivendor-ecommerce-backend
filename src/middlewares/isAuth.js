@@ -1,3 +1,4 @@
+const config = require("config");
 const jwt = require("jsonwebtoken");
 const { promise } = require("./promise");
 
@@ -7,7 +8,7 @@ exports.authentication = promise((req, res, next) => {
   if (!token)
     return res.status(401).json({ message: "Auth Failed! Invalid Token" });
 
-  const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  const user = jwt.verify(token, config.get("jwt.secret"));
 
   if (!user)
     return res.status(401).json({ message: "Auth Failed! Invalid Token" });
