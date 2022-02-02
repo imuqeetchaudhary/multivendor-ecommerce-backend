@@ -2,6 +2,7 @@ const userService = require("../services/user");
 const { promise } = require("../middlewares/promise");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const config = require("config");
 
 exports.register = promise(async (req, res) => {
   const { name, email, password } = req.body;
@@ -34,7 +35,7 @@ exports.login = promise(async (req, res) => {
 
   const newUserObj = userService.excludePassword({ user });
 
-  const token = jwt.sign({ ...newUserObj }, process.env.ACCESS_TOKEN_SECRET);
+  const token = jwt.sign({ ...newUserObj }, config.get("jwt.secret"));
 
   res.status(200).json({ token, user: newUserObj });
 });
