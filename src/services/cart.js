@@ -15,7 +15,7 @@ exports.createCart = async ({ userId, productId }) => {
 
 exports.getAllCarts = async ({ userId }) => {
   try {
-    const carts = await db.Cart.findOne({
+    const carts = await db.Cart.findAll({
       where: { userId },
       attributes: [["cart_id", "_id"], "quantity"],
       include: [
