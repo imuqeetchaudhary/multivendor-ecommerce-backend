@@ -3,7 +3,7 @@ const { app } = require("./src/app");
 
 async function bootstrap() {
   console.log("Please wait for the server and db to run .....");
-  const PORT = process.env.PORT || 9000;
+  const PORT = process.env.PORT || 8000;
 
   try {
     await db.sequelize.sync();
