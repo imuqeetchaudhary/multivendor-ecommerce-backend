@@ -17,15 +17,15 @@ exports.getAllCarts = async ({ userId }) => {
 	try {
 		const carts = await db.Cart.findAll({
 			where: { userId },
-			attributes: ['cart_id', 'quantity'],
+			attributes: ['cartId', 'quantity'],
 			include: [
 				{
 					model: db.User,
-					attributes: ['user_id', 'name', 'email'],
+					attributes: ['userId', 'name', 'email'],
 				},
 				{
 					model: db.Product,
-					attributes: ['product_id', 'title', 'description', 'price', 'image'],
+					attributes: ['productId', 'title', 'description', 'price', 'image'],
 				},
 			],
 		});

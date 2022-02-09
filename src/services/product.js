@@ -49,8 +49,6 @@ exports.updateProduct = async ({ id, title, price, description }) => {
 			{ where: { productId: id } }
 		);
 
-		console.log(updateProduct);
-
 		return updateProduct == 0 ? 'Product not found' : 'Successfully updated product';
 	} catch (err) {
 		throw new Error(err);

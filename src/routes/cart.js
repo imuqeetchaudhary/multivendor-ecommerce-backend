@@ -1,14 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { authentication } = require("../middlewares/isAuth");
-const cartController = require("../controllers/cart");
+const cartController = require('../controllers/cart');
 
-router.post("/:id", authentication, cartController.createCart);
+router.post('/:id', cartController.createCart);
 
-router.get("/", authentication, cartController.getAllCarts);
+router.get('/', cartController.getAllCarts);
 
-router.patch("/:id", authentication, cartController.updateCart);
+router.patch('/:id', cartController.updateCart);
 
-router.delete("/:id", authentication, cartController.deleteCart);
+router.delete('/:id', cartController.deleteCart);
 
 module.exports = router;
