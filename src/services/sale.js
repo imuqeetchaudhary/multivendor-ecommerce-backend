@@ -30,8 +30,6 @@ exports.getAllSalesForAdmin = async () => {
 			attributes: [
 				'saleId',
 				'productId',
-				'sellerId',
-				'buyerId',
 				'productQuantity',
 				'productPrice',
 				'totalPrice',
@@ -39,10 +37,18 @@ exports.getAllSalesForAdmin = async () => {
 			include: [
 				{
 					model: db.User,
-					attributes: ['userId', 'name', 'email'],
+					as: 'Seller',
+					attributes: [['user_id', 'sellerId'], 'name', 'email'],
 				},
 				{
+					model: db.User,
+					as: 'Buyer',
+					attributes: [['user_id', 'buyerId'], 'name', 'email'],
+				},
+
+				{
 					model: db.Product,
+					as: 'Product',
 					attributes: [
 						'productId',
 						'title',
@@ -51,10 +57,6 @@ exports.getAllSalesForAdmin = async () => {
 						'image',
 						'ownerId',
 					],
-					include: {
-						model: db.User,
-						attributes: ['userId', 'name', 'email'],
-					},
 				},
 			],
 		});
