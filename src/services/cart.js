@@ -25,12 +25,48 @@ exports.getAllCarts = async ({ userId }) => {
 				},
 				{
 					model: db.Product,
-					attributes: ['productId', 'title', 'description', 'price', 'image'],
+					attributes: [
+						'productId',
+						'title',
+						'description',
+						'price',
+						'image',
+						'ownerId',
+					],
 				},
 			],
 		});
 		if (!carts) throw new Error('No product found in cart');
 		return carts;
+	} catch (err) {
+		throw new Error(err);
+	}
+};
+
+exports.getSingleCart = async ({ id }) => {
+	try {
+		const cart = await db.Cart.findByPk(id, {
+			attributes: ['cartId', 'quantity'],
+			include: [
+				{
+					model: db.User,
+					attributes: ['userId', 'name', 'email'],
+				},
+				{
+					model: db.Product,
+					attributes: [
+						'productId',
+						'title',
+						'description',
+						'price',
+						'image',
+						'ownerId',
+					],
+				},
+			],
+		});
+		if (!cart) return 'Cart not found';
+		return cart;
 	} catch (err) {
 		throw new Error(err);
 	}

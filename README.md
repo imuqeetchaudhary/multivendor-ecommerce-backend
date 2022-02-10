@@ -94,3 +94,9 @@
 ### to delete a single cart product
 
 - cart/:id: :delete :protected (where id === cartId)
+
+## Routes for Sale
+
+### to create a new sale
+
+- sale/:cartId :post :protected

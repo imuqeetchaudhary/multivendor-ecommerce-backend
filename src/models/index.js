@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const user = require('./user');
 const product = require('./product');
 const cart = require('./cart');
-const sale = require('./cart');
+const sale = require('./sale');
 
 function init() {
 	const sequelize = new Sequelize('online-store', 'sa', 'root', {
