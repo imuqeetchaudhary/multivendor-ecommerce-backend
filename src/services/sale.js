@@ -160,3 +160,46 @@ exports.getAllSalesForBuyer = async ({ buyerId }) => {
 		throw new Error(err);
 	}
 };
+
+exports.getSingleSaleByPk = async ({ saleId: id }) => {
+	try {
+		const sale = await db.Sale.findByPk(id, {
+			attributes: [
+				'saleId',
+				'productId',
+				'productQuantity',
+				'productPrice',
+				'totalPrice',
+			],
+			include: [
+				{
+					model: db.User,
+					as: 'Seller',
+					attributes: [['user_id', 'sellerId'], 'name', 'email'],
+				},
+				{
+					model: db.User,
+					as: 'Buyer',
+					attributes: [['user_id', 'buyerId'], 'name', 'email'],
+				},
+
+				{
+					model: db.Product,
+					as: 'Product',
+					attributes: [
+						'productId',
+						'title',
+						'description',
+						'price',
+						'image',
+						'ownerId',
+					],
+				},
+			],
+		});
+
+		return sale;
+	} catch (err) {
+		throw new Error(err);
+	}
+};

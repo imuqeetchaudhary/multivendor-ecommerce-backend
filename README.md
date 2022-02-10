@@ -103,4 +103,16 @@
 
 ### to get all sales for admin
 
-- sale/:admin :get :protected
+- sale/admin :get :protected
+
+### to get all sales for seller
+
+- sale/seller :get :protected
+
+### to get all sales for buyer
+
+- sale/buyer :get :protected
+
+### to get single sale by pk
+
+- sale/:saleId :get :protected

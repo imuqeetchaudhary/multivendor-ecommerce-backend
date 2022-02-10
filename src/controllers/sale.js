@@ -51,3 +51,11 @@ exports.getAllSalesForBuyer = promise(async (req, res) => {
 
 	res.status(200).json({ sales });
 });
+
+exports.getSingleSaleByPk = promise(async (req, res) => {
+	const { saleId } = req.params;
+
+	const sale = await saleService.getSingleSaleByPk({ saleId });
+
+	res.status(200).json({ sale });
+});
