@@ -59,3 +59,20 @@ exports.getSingleSaleByPk = promise(async (req, res) => {
 
 	res.status(200).json({ sale });
 });
+
+exports.getTotalQuantityOfProductSold = promise(async (req, res) => {
+	const { productId } = req.params;
+
+	const allSalesForASingleProduct = await saleService.getAllSalesForASingleProduct({
+		productId,
+	});
+
+	const totalNumberOfQuantitySold = allSalesForASingleProduct.reduce(
+		(accumulator, nextSale) => {
+			return nextSale.productQuantity + accumulator;
+		},
+		0
+	);
+
+	res.status(200).json({ totalNumberOfQuantitySold });
+});

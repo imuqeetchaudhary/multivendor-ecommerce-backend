@@ -203,3 +203,15 @@ exports.getSingleSaleByPk = async ({ saleId: id }) => {
 		throw new Error(err);
 	}
 };
+
+exports.getAllSalesForASingleProduct = async ({ productId }) => {
+	try {
+		const allSalesForASingleProduct = await db.Sale.findAll({
+			where: { productId },
+		});
+
+		return allSalesForASingleProduct;
+	} catch (err) {
+		throw new Error(err);
+	}
+};

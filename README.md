@@ -116,3 +116,7 @@
 ### to get single sale by pk
 
 - sale/:saleId :get :protected
+
+### to get total quantity of product sold
+
+- sale/product-sold/:productId :get :protected
