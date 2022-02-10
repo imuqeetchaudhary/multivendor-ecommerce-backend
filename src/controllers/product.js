@@ -1,67 +1,69 @@
-const productService = require("../services/product");
-const { promise } = require("../middlewares/promise");
+const productService = require('../services/product');
+const { promise } = require('../middlewares/promise');
 
 exports.createProduct = promise(async (req, res) => {
-  const { title, price, description } = req.body;
-  const image = req.file.filename;
+	const { title, price, description } = req.body;
+	const image = req.file.filename;
+	const ownerId = req.user.userId;
 
-  const product = await productService.createProduct({
-    title,
-    price,
-    image,
-    description,
-  });
+	const product = await productService.createProduct({
+		title,
+		price,
+		image,
+		description,
+		ownerId,
+	});
 
-  const newProductObj = productService.excludeCreatedAtUpdatedAt({ product });
+	const newProductObj = productService.excludeCreatedAtUpdatedAt({ product });
 
-  const imageRequest = {
-    type: "GET",
-    url: `http://localhost:8000/${newProductObj.image}`,
-  };
+	const imageRequest = {
+		type: 'GET',
+		url: `http://localhost:8000/${newProductObj.image}`,
+	};
 
-  res.status(200).json({
-    message: "Successfully created a new product",
-    newProductObj,
-    imageRequest,
-  });
+	res.status(200).json({
+		message: 'Successfully created a new product',
+		newProductObj,
+		imageRequest,
+	});
 });
 
 exports.getAllProducts = promise(async (req, res) => {
-  const products = await productService.getAllProducts();
+	const products = await productService.getAllProducts();
 
-  res.status(200).json({ products });
+	res.status(200).json({ products });
 });
 
 exports.getSingleProduct = promise(async (req, res) => {
-  const { id } = req.params;
-  const product = await productService.getSingleProduct({ id });
+	const { id } = req.params;
+	const product = await productService.getSingleProduct({ id });
 
-  res.status(200).json({ product });
+	res.status(200).json({ product });
 });
 
 exports.updateProduct = promise(async (req, res) => {
-  const { id } = req.params;
-  const { title, price, description } = req.body;
+	const { id } = req.params;
+	const { title, price, description } = req.body;
 
-  const message = await productService.updateProduct({
-    id,
-    title,
-    price,
-    description,
-  });
+	const message = await productService.updateProduct({
+		id,
+		title,
+		price,
+		description,
+	});
 
-  res.status(200).json({
-    message,
-    request: {
-      type: "GET",
-      url: `http://localhost:8000/product/${id}`,
-    },
-  });
+	res.status(200).json({
+		message,
+		request: {
+			type: 'GET',
+			url: `http://localhost:8000/product/${id}`,
+		},
+	});
 });
 
 exports.deleteProduct = promise(async (req, res) => {
-  const { id } = req.params;
-  const message = await productService.deleteProduct({ id });
+	const { id } = req.params;
+	const message = await productService.deleteProduct({ id });
 
-  res.status(200).json({ message });
+	res.status(200).json({ message });
 });

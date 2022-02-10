@@ -1,12 +1,13 @@
 const db = require('../models');
 
-exports.createProduct = async ({ title, price, image, description }) => {
+exports.createProduct = async ({ title, price, image, description, ownerId }) => {
 	try {
 		const product = await db.Product.create({
 			title,
 			price,
 			image,
 			description,
+			ownerId,
 		});
 
 		return product;
