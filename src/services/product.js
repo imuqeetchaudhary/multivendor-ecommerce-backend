@@ -19,7 +19,7 @@ exports.createProduct = async ({ title, price, image, description, ownerId }) =>
 exports.getAllProducts = async () => {
 	try {
 		const products = await db.Product.findAll({
-			attributes: ['productId', 'title', 'description', 'price', 'image'],
+			attributes: ['productId', 'title', 'description', 'price', 'image', 'ownerId'],
 		});
 		return products;
 	} catch (err) {
@@ -30,7 +30,7 @@ exports.getAllProducts = async () => {
 exports.getSingleProduct = async ({ id }) => {
 	try {
 		const products = await db.Product.findByPk(id, {
-			attributes: ['productId', 'title', 'description', 'price', 'image'],
+			attributes: ['productId', 'title', 'description', 'price', 'image', 'ownerId'],
 		});
 		if (!products) return 'Product not found';
 		return products;
