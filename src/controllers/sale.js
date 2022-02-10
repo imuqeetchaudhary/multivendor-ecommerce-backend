@@ -29,3 +29,9 @@ exports.createSale = promise(async (req, res) => {
 
 	res.status(200).json({ message: 'Successfully created sale', sale });
 });
+
+exports.getAllSalesForAdmin = promise(async (req, res) => {
+	const sales = await saleService.getAllSalesForAdmin();
+
+	res.status(200).json({ sales });
+});

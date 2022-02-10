@@ -100,3 +100,7 @@
 ### to create a new sale
 
 - sale/:cartId :post :protected
+
+### to get all sales for admin
+
+- sale/:admin :get :protected
