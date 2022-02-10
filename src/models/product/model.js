@@ -1,4 +1,4 @@
-exports.init = (sequelize, DataTypes, { User }) => {
+exports.makeModel = (sequelize, DataTypes, { User }) => {
 	const Product = sequelize.define(
 		'Product',
 		{
@@ -32,9 +32,6 @@ exports.init = (sequelize, DataTypes, { User }) => {
 		},
 		{ underscored: true, tablename: 'product' }
 	);
-
-	User.hasMany(Product, { foreignKey: 'owner_id' });
-	Product.belongsTo(User, { foreignKey: 'owner_id' });
 
 	return Product;
 };
