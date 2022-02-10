@@ -68,3 +68,95 @@ exports.getAllSalesForAdmin = async () => {
 		throw new Error(err);
 	}
 };
+
+exports.getAllSalesForSeller = async ({ sellerId }) => {
+	try {
+		const sales = await db.Sale.findAll({
+			where: { sellerId },
+			attributes: [
+				'saleId',
+				'productId',
+				'productQuantity',
+				'productPrice',
+				'totalPrice',
+			],
+			include: [
+				{
+					model: db.User,
+					as: 'Seller',
+					attributes: [['user_id', 'sellerId'], 'name', 'email'],
+				},
+				{
+					model: db.User,
+					as: 'Buyer',
+					attributes: [['user_id', 'buyerId'], 'name', 'email'],
+				},
+
+				{
+					model: db.Product,
+					as: 'Product',
+					attributes: [
+						'productId',
+						'title',
+						'description',
+						'price',
+						'image',
+						'ownerId',
+					],
+				},
+			],
+		});
+
+		if (!sales) throw new Error('No sales found');
+
+		return sales;
+	} catch (err) {
+		throw new Error(err);
+	}
+};
+
+exports.getAllSalesForBuyer = async ({ buyerId }) => {
+	try {
+		const sales = await db.Sale.findAll({
+			where: { buyerId },
+			attributes: [
+				'saleId',
+				'productId',
+				'productQuantity',
+				'productPrice',
+				'totalPrice',
+			],
+			include: [
+				{
+					model: db.User,
+					as: 'Seller',
+					attributes: [['user_id', 'sellerId'], 'name', 'email'],
+				},
+				{
+					model: db.User,
+					as: 'Buyer',
+					attributes: [['user_id', 'buyerId'], 'name', 'email'],
+				},
+
+				{
+					model: db.Product,
+					as: 'Product',
+					attributes: [
+						'productId',
+						'title',
+						'description',
+						'price',
+						'image',
+						'ownerId',
+					],
+				},
+			],
+		});
+
+		if (!sales) throw new Error('No sales found');
+
+		return sales;
+	} catch (err) {
+		throw new Error(err);
+	}
+};

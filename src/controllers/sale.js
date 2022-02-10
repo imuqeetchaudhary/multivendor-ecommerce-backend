@@ -35,3 +35,19 @@ exports.getAllSalesForAdmin = promise(async (req, res) => {
 
 	res.status(200).json({ sales });
 });
+
+exports.getAllSalesForSeller = promise(async (req, res) => {
+	const sellerId = req.user.userId;
+
+	const sales = await saleService.getAllSalesForSeller({ sellerId });
+
+	res.status(200).json({ sales });
+});
+
+exports.getAllSalesForBuyer = promise(async (req, res) => {
+	const buyerId = req.user.userId;
+
+	const sales = await saleService.getAllSalesForBuyer({ buyerId });
+
+	res.status(200).json({ sales });
+});
