@@ -4,7 +4,7 @@ exports.findUser = async ({ email }) => {
 	try {
 		const user = await db.User.findOne({
 			where: { email },
-			attributes: ['userId', 'name', 'email', 'password'],
+			attributes: ['userId', 'name', 'email', 'password', 'isAdmin'],
 		});
 
 		return user;
@@ -13,12 +13,13 @@ exports.findUser = async ({ email }) => {
 	}
 };
 
-exports.createUser = async ({ name, email, password }) => {
+exports.createUser = async ({ name, email, password, isAdmin }) => {
 	try {
 		const user = await db.User.create({
 			name,
 			email,
 			password,
+			isAdmin,
 		});
 
 		return user;

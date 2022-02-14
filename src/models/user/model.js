@@ -21,6 +21,10 @@ exports.makeModel = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 			},
+			isAdmin: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
 		},
 		{ underscored: true, tablename: 'user' }
 	);
