@@ -70,7 +70,7 @@ exports.getAllProductsForASpecificOwner = async ({ ownerId }) => {
 	try {
 		const products = await db.Product.findAll({
 			where: { ownerId },
-			attributes: ['productId', 'title'],
+			attributes: ['productId', 'title', 'description', 'price', 'image', 'ownerId'],
 		});
 
 		return products;

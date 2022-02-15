@@ -13,6 +13,12 @@ router.post(
 
 router.get('/', productController.getAllProducts);
 
+router.get(
+	'/owner',
+	authentication,
+	productController.getAllProductsForASpecificOwner
+);
+
 router.get('/:id', productController.getSingleProduct);
 
 router.patch('/:id', authentication, productController.updateProduct);

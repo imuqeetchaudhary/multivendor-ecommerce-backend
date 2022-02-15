@@ -103,3 +103,11 @@ exports.getSaleGraphOfAllProductsForASpecificSeller = promise(async (req, res) =
 
 	res.status(200).json({ productsGraph });
 });
+
+exports.getAllProductsForASpecificOwner = promise(async (req, res) => {
+	const ownerId = req.user.userId;
+
+	const products = await productService.getAllProductsForASpecificOwner({ ownerId });
+
+	res.status(200).json({ products });
+});

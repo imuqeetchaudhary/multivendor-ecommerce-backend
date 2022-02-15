@@ -55,6 +55,10 @@
 
 - product/ :get
 
+### to get all product for a owner
+
+- product/owner :get :protected
+
 ### to get a single product (where id === productId)
 
 - product/:id: :get
