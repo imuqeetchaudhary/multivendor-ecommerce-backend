@@ -40,3 +40,9 @@ exports.login = promise(async (req, res) => {
 
 	res.status(200).json({ token, user: newUserObj });
 });
+
+exports.getAllUsers = promise(async (req, res) => {
+	const users = await userService.getAllUsers();
+
+	res.status(200).json({ users });
+});

@@ -28,6 +28,17 @@ exports.createUser = async ({ name, email, password, isAdmin }) => {
 	}
 };
 
+exports.getAllUsers = async () => {
+	try {
+		const users = await db.User.findAll({
+			attributes: ['userId', 'name', 'email', 'isAdmin'],
+		});
+		return users;
+	} catch (err) {
+		throw new Error(err);
+	}
+};
+
 exports.excludePassword = ({ user }) => {
 	try {
 		const { password, createdAt, updatedAt, ...rest } = user.dataValues;

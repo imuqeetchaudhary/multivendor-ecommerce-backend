@@ -32,6 +32,10 @@
 }
 ```
 
+### to get all users
+
+- user/all :get :protected
+
 ## Routes for Products
 
 ### to create a new product
