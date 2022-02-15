@@ -215,3 +215,29 @@ exports.getAllSalesForASingleProduct = async ({ productId }) => {
 		throw new Error(err);
 	}
 };
+
+exports.getAllPurchasesHistoryForASpecificBuyer = async ({ buyerId }) => {
+	try {
+		const purchaseHistory = await db.Sale.findAll({
+			where: { buyerId },
+			attributes: [
+				'saleId',
+				'productId',
+				'productQuantity',
+				'productPrice',
+				'totalPrice',
+			],
+			include: [
+				{
+					model: db.Product,
+					as: 'Product',
+					attributes: ['productId', 'title'],
+				},
+			],
+		});
+
+		return purchaseHistory;
+	} catch (err) {
+		throw new Error(err);
+	}
+};

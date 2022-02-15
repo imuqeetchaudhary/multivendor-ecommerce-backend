@@ -129,3 +129,7 @@
 ### to get total quantity of product sold
 
 - sale/product-sold/:productId :get :protected
+
+### to get all purchase history of a specific buyer
+
+- sale/purchase-history/:buyerId :get :protected

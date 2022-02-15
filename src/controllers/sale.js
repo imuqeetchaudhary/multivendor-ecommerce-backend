@@ -76,3 +76,13 @@ exports.getTotalQuantityOfProductSold = promise(async (req, res) => {
 
 	res.status(200).json({ totalNumberOfQuantitySold });
 });
+
+exports.getAllPurchasesHistoryForASpecificBuyer = promise(async (req, res) => {
+	const { buyerId } = req.params;
+
+	const purchaseHistory = await saleService.getAllPurchasesHistoryForASpecificBuyer({
+		buyerId,
+	});
+
+	res.status(200).json({ purchaseHistory });
+});
