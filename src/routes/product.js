@@ -19,4 +19,10 @@ router.patch('/:id', authentication, productController.updateProduct);
 
 router.delete('/:id', authentication, productController.deleteProduct);
 
+router.get(
+	'/seller/:sellerId',
+	authentication,
+	productController.getSaleGraphOfAllProductsForASpecificSeller
+);
+
 module.exports = router;

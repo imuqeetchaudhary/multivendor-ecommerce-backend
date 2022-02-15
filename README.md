@@ -71,6 +71,10 @@
 
 - product/:id: :delete :protected (where id === productId)
 
+### to get products selling graph for a specific seller
+
+- product/seller/:sellerId :get :protected
+
 ## Routes for Adding Products to Cart
 
 ### to add a new product to cart

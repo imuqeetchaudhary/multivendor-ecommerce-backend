@@ -66,6 +66,19 @@ exports.deleteProduct = async ({ id }) => {
 	}
 };
 
+exports.getAllProductsForASpecificOwner = async ({ ownerId }) => {
+	try {
+		const products = await db.Product.findAll({
+			where: { ownerId },
+			attributes: ['productId', 'title'],
+		});
+
+		return products;
+	} catch (err) {
+		throw new Error(err);
+	}
+};
+
 exports.excludeCreatedAtUpdatedAt = ({ product }) => {
 	try {
 		const { createdAt, updatedAt, ...rest } = product.dataValues;

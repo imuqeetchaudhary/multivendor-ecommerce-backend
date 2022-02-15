@@ -1,4 +1,5 @@
 const productService = require('../services/product');
+const saleService = require('../services/sale');
 const { promise } = require('../middlewares/promise');
 
 exports.createProduct = promise(async (req, res) => {
@@ -66,4 +67,39 @@ exports.deleteProduct = promise(async (req, res) => {
 	const message = await productService.deleteProduct({ id });
 
 	res.status(200).json({ message });
+});
+
+exports.getSaleGraphOfAllProductsForASpecificSeller = promise(async (req, res) => {
+	const ownerId = req.params.sellerId;
+
+	const sellerProducts = await productService.getAllProductsForASpecificOwner({
+		ownerId,
+	});
+
+	let productsGraph = [];
+
+	for (let i = 0; i < sellerProducts.length; i++) {
+		const allSalesForASingleProduct = await saleService.getAllSalesForASingleProduct(
+			{
+				productId: sellerProducts[i].productId,
+			}
+		);
+
+		const productSaleQuantity = allSalesForASingleProduct.reduce(
+			(accumulator, nextSale) => {
+				return nextSale.productQuantity + accumulator;
+			},
+			0
+		);
+
+		newProductObj = {
+			productId: sellerProducts[i].productId,
+			title: sellerProducts[i].title,
+			saleQuantity: productSaleQuantity,
+		};
+
+		productsGraph.push(newProductObj);
+	}
+
+	res.status(200).json({ productsGraph });
 });
